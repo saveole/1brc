@@ -16,8 +16,11 @@
 #
 
 JAVA_OPTS="\
-        -Xms16g \
-        -Xmx16g \
+        -Xms12g \
+        -Xmx12g \
+        -XX:+EnableDynamicAgentLoading \
         -XX:+UseZGC \
         -XX:+ZGenerational"
-java -javaagent:ap-loader.jar=start,event=cpu,file=profile.html $JAVA_OPTS --class-path target/average-1.0.0-SNAPSHOT.jar dev.morling.onebrc.CalculateAverage_saveole
+java -javaagent:ap-loader-macos.jar=start,event=cpu,file=profile_parallel.html \
+              $JAVA_OPTS --class-path target/average-1.0.0-SNAPSHOT.jar \
+              dev.morling.onebrc.CalculateAverage_saveole
